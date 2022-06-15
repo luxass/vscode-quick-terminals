@@ -1,11 +1,23 @@
 import { join } from "path";
 import * as fs from "fs";
 import * as util from "util";
-import { window } from "vscode";
-import { QuickTerminal, QuickTerminals } from "./types";
+import { Terminal, ThemeColor, ThemeIcon, Uri, window } from "vscode";
+import { QuickTerminal, QuickTerminalColor, QuickTerminals } from "./types";
 
 const exists = util.promisify(fs.exists);
 const readFile = util.promisify(fs.readFile);
+
+// This should probably be updated, when vscode updates their terminal colors.
+export const TERMINAL_COLORS = [
+  "Black",
+  "Red",
+  "Green",
+  "Yellow",
+  "Blue",
+  "Magenta",
+  "Cyan",
+  "White",
+] as const;
 
 export async function getTerminals(
   workspaceUri: string
@@ -29,4 +41,26 @@ export async function getTerminals(
   }
 
   return parsed.terminals;
+}
+
+export function getRandomColor(): QuickTerminalColor {
+  return `terminal.ansi${
+    TERMINAL_COLORS[Math.floor(Math.random() * TERMINAL_COLORS.length)]
+  }`;
+}
+
+export function openTerminal(
+  workspace: string,
+  terminal: QuickTerminal
+): Terminal {
+  const name = terminal.name || "No Name";
+  const color = terminal.color || getRandomColor();
+  const cwd = terminal.cwd || "";
+  const uri = Uri.parse(workspace);
+
+  return window.createTerminal({
+    name: name,
+    color: new ThemeColor(color),
+    cwd: Uri.joinPath(uri, cwd),
+  });
 }

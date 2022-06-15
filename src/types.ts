@@ -1,20 +1,13 @@
+import { TERMINAL_COLORS } from "./utils";
+
 export interface QuickTerminals {
   terminals: QuickTerminal[];
 }
 
 export interface QuickTerminal {
-  name: string;
-  color: QuickTerminalColor;
-  icon: string;
+  name?: string;
+  color?: QuickTerminalColor;
+  cwd?: string;
 }
 
-// This should probably be updated, when vscode updates their terminal colors.
-export type QuickTerminalColor =
-  | "black"
-  | "red"
-  | "green"
-  | "yellow"
-  | "blue"
-  | "magenta"
-  | "cyan"
-  | "white";
+export type QuickTerminalColor = `terminal.ansi${typeof TERMINAL_COLORS[number]}`;

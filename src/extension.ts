@@ -5,7 +5,7 @@ import {
   window,
   workspace,
 } from "vscode";
-import { getTerminals } from "./utils";
+import { getTerminals, openTerminal } from "./utils";
 
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(
@@ -18,22 +18,17 @@ export function activate(context: ExtensionContext) {
         }
 
         try {
-          const terminals = await getTerminals(
-            workspace.workspaceFolders[0].uri.fsPath
-          );
+          const fsPath = workspace.workspaceFolders[0].uri.fsPath;
+          const terminals = await getTerminals(fsPath);
 
           console.log(terminals);
-          
+          terminals.forEach((terminal) => {
+            openTerminal(fsPath, terminal);
+          });
           // const terminal = await window.showQuickPick(terminals, {
         } catch (error: any) {
           window.showErrorMessage(error.message);
         }
-
-        window.createTerminal({
-          name: "Terminal 1",
-          color: new ThemeColor("terminal.ansiRed"),
-          location: 1,
-        });
       }
     )
   );
