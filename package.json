@@ -1,5 +1,6 @@
 {
   "name": "vscode-quick-terminals",
+  "publisher": "luxass",
   "displayName": "Quick Terminals",
   "version": "0.0.1",
   "description": "Open multiple terminals at the same time.",
