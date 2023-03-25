@@ -14,3 +14,4 @@ CHANGELOG.md
 .github/**
 scripts
 pnpm-lock.yaml
+.eslintcache
