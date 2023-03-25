@@ -3,6 +3,19 @@
   "displayName": "Quick Terminals",
   "version": "0.0.1",
   "description": "Open multiple terminals at the same time.",
+  "author": {
+    "name": "Lucas Nørgård",
+    "email": "lucasnrgaard@gmail.com",
+    "url": "https://luxass.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luxass/vscode-quick-terminals"
+  },
+  "bugs": {
+    "url": "https://github.com/luxass/vscode-quick-terminals/issues"
+  },
   "categories": [
     "Other"
   ],
