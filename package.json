@@ -1,19 +1,19 @@
 {
   "name": "vscode-quick-terminals",
   "displayName": "Quick Terminals",
-  "description": "Open multiple terminals at the same time.",
   "version": "0.0.1",
+  "description": "Open multiple terminals at the same time.",
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.68.0"
   },
   "packageManager": "pnpm@7.18.0",
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {

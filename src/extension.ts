@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/indent */
+import type { ExtensionContext, TerminalOptions } from "vscode";
 import {
-  ExtensionContext,
-  TerminalOptions,
   ThemeColor,
   ThemeIcon,
   Uri,
@@ -20,7 +20,6 @@ type QuickTerminalColor =
   | "terminal.ansiWhite";
 
 type IconPath =
-  | string
   | {
       light: string;
       dark: string;
@@ -28,7 +27,8 @@ type IconPath =
   | {
       id: string;
       color?: string;
-    };
+    }
+  | string;
 
 interface QuickTerminal {
   name: string;
@@ -74,9 +74,9 @@ export function activate(context: ExtensionContext) {
         const term = window.createTerminal({
           name: terminal.name,
           color: terminal.color ? new ThemeColor(terminal.color) : undefined,
-          cwd: /\$\{.+?\}/.test(terminal.cwd || "")
-            ? terminal.cwd
-            : Uri.joinPath(workspaceUri, terminal.cwd || ""),
+          cwd: /\$\{.+?\}/.test(terminal.cwd || "") ?
+            terminal.cwd :
+            Uri.joinPath(workspaceUri, terminal.cwd || ""),
           shellArgs: terminal.shellArgs,
           shellPath: terminal.shellPath,
           env: terminal.env,
@@ -145,9 +145,9 @@ export function activate(context: ExtensionContext) {
       const term = window.createTerminal({
         name: terminal.name,
         color: terminal.color ? new ThemeColor(terminal.color) : undefined,
-        cwd: /\$\{.+?\}/.test(terminal.cwd || "")
-          ? terminal.cwd
-          : Uri.joinPath(workspaceUri, terminal.cwd || ""),
+        cwd: /\$\{.+?\}/.test(terminal.cwd || "") ?
+          terminal.cwd :
+          Uri.joinPath(workspaceUri, terminal.cwd || ""),
         shellArgs: terminal.shellArgs,
         shellPath: terminal.shellPath,
         env: terminal.env,

@@ -1,8 +1,9 @@
 # Quick Terminals
 
 ## Features
+
 - Open multiple pre-configured terminals with a command
-- Can open terminals on startup based on `quickTerminals.openOnStartup` setting 
+- Can open terminals on startup based on `quickTerminals.openOnStartup` setting
 
 ## Configure a terminal
 
@@ -10,7 +11,6 @@
 // .vscode/settings.json
 
 {
-  ...
   "quickTerminals.terminals": [
     {
       "name": "Terminal 1",
