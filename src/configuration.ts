@@ -31,7 +31,7 @@ export interface QuickTerminal {
 
 export interface Config {
   terminals: QuickTerminal[];
-  showOnStartup: boolean | string;
+  openOnStartup: boolean | string;
   presets: Preset[];
 }
 
@@ -45,7 +45,7 @@ export interface Preset {
 }
 
 export interface QuickPresetTerminal extends QuickTerminal {
-  overrideCwd?: boolean;
+  preventCwdPrepend?: boolean;
 }
 
 export const config = {
