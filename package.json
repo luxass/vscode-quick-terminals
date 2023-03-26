@@ -56,6 +56,10 @@
           "items": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string",
+                "description": "The id of the terminal."
+              },
               "name": {
                 "type": "string",
                 "description": "The name of the terminal."
@@ -121,59 +125,16 @@
                 "description": "The icon to use for the terminal.",
                 "type": "string",
                 "default": "terminal-view-icon"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ]
-          }
-        },
-        "quickTerminals.presets": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "The name of the preset."
               },
-              "shellPath": {
-                "type": "string",
-                "description": "The path to the shell executable."
-              },
-              "shellArgs": {
-                "description": "The arguments to pass to the shell executable.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "cwd": {
-                "type": "string",
-                "description": "The current working directory of the preset. (this will be prepended to the cwd of the terminals)"
-              },
-              "env": {
-                "type": "object",
-                "description": "The environment of the terminal.",
-                "additionalProperties": {
-                  "type": "string"
-                }
-              },
-              "terminals": {
+              "split": {
                 "type": "array",
-                "description": "The terminals to open on startup.",
-                "default": [],
                 "items": {
                   "type": "object",
                   "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The id of the terminal."
+                    },
                     "name": {
                       "type": "string",
                       "description": "The name of the terminal."
@@ -245,10 +206,223 @@
                       "type": "string",
                       "default": "terminal-view-icon"
                     }
+                  }
+                }
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "quickTerminals.presets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the preset."
+              },
+              "shellPath": {
+                "type": "string",
+                "description": "The path to the shell executable."
+              },
+              "shellArgs": {
+                "description": "The arguments to pass to the shell executable.",
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "cwd": {
+                "type": "string",
+                "description": "The current working directory of the preset. (this will be prepended to the cwd of the terminals)"
+              },
+              "env": {
+                "type": "object",
+                "description": "The environment of the terminal.",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "terminals": {
+                "type": "array",
+                "description": "The terminals to open on startup.",
+                "default": [],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The id of the terminal."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the terminal."
+                    },
+                    "color": {
+                      "type": "string",
+                      "description": "The color of the terminal.",
+                      "enum": [
+                        "black",
+                        "red",
+                        "green",
+                        "yellow",
+                        "blue",
+                        "magenta",
+                        "cyan",
+                        "white"
+                      ],
+                      "default": "white"
+                    },
+                    "cwd": {
+                      "type": "string",
+                      "description": "The current working directory of the terminal."
+                    },
+                    "preventCwdPrepend": {
+                      "type": "boolean",
+                      "description": "Whether to prevent the preset cwd to be prepended to terminal cwd.",
+                      "default": false
+                    },
+                    "command": {
+                      "type": "string",
+                      "description": "The command to run in the terminal."
+                    },
+                    "show": {
+                      "type": "boolean",
+                      "description": "Whether to show the terminal.",
+                      "default": true
+                    },
+                    "shellPath": {
+                      "type": "string",
+                      "description": "The path to the shell executable."
+                    },
+                    "shellArgs": {
+                      "description": "The arguments to pass to the shell executable.",
+                      "oneOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "env": {
+                      "type": "object",
+                      "description": "The environment of the terminal.",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The message to send to the terminal."
+                    },
+                    "icon": {
+                      "description": "The icon to use for the terminal.",
+                      "type": "string",
+                      "default": "terminal-view-icon"
+                    },
+                    "split": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "The id of the terminal."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the terminal."
+                          },
+                          "color": {
+                            "type": "string",
+                            "description": "The color of the terminal.",
+                            "enum": [
+                              "black",
+                              "red",
+                              "green",
+                              "yellow",
+                              "blue",
+                              "magenta",
+                              "cyan",
+                              "white"
+                            ],
+                            "default": "white"
+                          },
+                          "cwd": {
+                            "type": "string",
+                            "description": "The current working directory of the terminal."
+                          },
+                          "preventCwdPrepend": {
+                            "type": "boolean",
+                            "description": "Whether to prevent the preset cwd to be prepended to terminal cwd.",
+                            "default": false
+                          },
+                          "command": {
+                            "type": "string",
+                            "description": "The command to run in the terminal."
+                          },
+                          "show": {
+                            "type": "boolean",
+                            "description": "Whether to show the terminal.",
+                            "default": true
+                          },
+                          "shellPath": {
+                            "type": "string",
+                            "description": "The path to the shell executable."
+                          },
+                          "shellArgs": {
+                            "description": "The arguments to pass to the shell executable.",
+                            "oneOf": [
+                              {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "env": {
+                            "type": "object",
+                            "description": "The environment of the terminal.",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "The message to send to the terminal."
+                          },
+                          "icon": {
+                            "description": "The icon to use for the terminal.",
+                            "type": "string",
+                            "default": "terminal-view-icon"
+                          }
+                        }
+                      }
+                    }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "name"
+                    "id"
                   ]
                 }
               }

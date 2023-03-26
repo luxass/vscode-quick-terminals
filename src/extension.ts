@@ -15,6 +15,8 @@ import { COLOR_MAP, config } from "./configuration";
 
 const VARIABLE_REGEX = /\$\{.+?\}/;
 
+const NO_NAME = "No Name";
+
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(
     commands.registerCommand("quickTerminals.open-terminals", async () => {
@@ -51,7 +53,7 @@ export function activate(context: ExtensionContext) {
     }),
     commands.registerCommand(
       "quickTerminals.open-terminal",
-      async (args?: { name?: string }) => {
+      async (args?: { id?: string }) => {
         if (!workspace.workspaceFolders?.length) {
           window.showErrorMessage("No workspace folder is open.");
           return;
@@ -74,12 +76,12 @@ export function activate(context: ExtensionContext) {
         }
 
         let terminal: QuickTerminal | undefined;
-        if (terminals.length > 1 && (!args?.name || args?.name.trim() === "")) {
+        if (terminals.length > 1 && (!args?.id || args?.id.trim() === "")) {
           await window
             .showQuickPick(
               terminals.map((term) => ({
-                label: term.name,
-                description: term.cwd?.toString()
+                label: term.name || NO_NAME,
+                description: term.id
               })),
               {
                 placeHolder: "Select a terminal to open"
@@ -89,14 +91,14 @@ export function activate(context: ExtensionContext) {
               if (picked) {
                 terminal = terminals.find(
                   (term) =>
-                    term.name === picked.label &&
-                    term.cwd === picked.description
+                    term.name ||
+                    (NO_NAME === picked.label && term.id === picked.description)
                 );
               }
             });
         } else {
           terminal =
-            terminals.find((terminal) => terminal.name === args?.name) ||
+            terminals.find((terminal) => terminal.id === args?.id) ||
             terminals[0];
         }
 
@@ -116,7 +118,7 @@ export function activate(context: ExtensionContext) {
     ),
     commands.registerCommand(
       "quickTerminals.open-preset",
-      async (args?: { name?: string }) => {
+      async (args?: { id?: string }) => {
         if (!workspace.workspaceFolders?.length) {
           window.showErrorMessage("No workspace folder is open.");
           return;
@@ -140,11 +142,11 @@ export function activate(context: ExtensionContext) {
         }
 
         let preset: Preset | undefined;
-        if (presets.length > 1 && (!args?.name || args?.name.trim() === "")) {
+        if (presets.length > 1 && (!args?.id || args?.id.trim() === "")) {
           await window
             .showQuickPick(
               presets.map((preset) => ({
-                label: preset.name,
+                label: preset.name || NO_NAME,
                 description: preset.cwd?.toString()
               })),
               {
@@ -155,14 +157,15 @@ export function activate(context: ExtensionContext) {
               if (picked) {
                 preset = presets.find(
                   (preset) =>
-                    preset.name === picked.label &&
-                    preset.cwd === picked.description
+                    preset.name ||
+                    (NO_NAME === picked.label &&
+                      preset.cwd === picked.description)
                 );
               }
             });
         } else {
           preset =
-            presets.find((preset) => preset.name === args?.name) || presets[0];
+            presets.find((preset) => preset.name === args?.id) || presets[0];
         }
 
         if (!preset) {
@@ -188,6 +191,18 @@ export function activate(context: ExtensionContext) {
               );
           }
 
+          console.log(
+            "AAA",
+            VARIABLE_REGEX.test(
+              path.resolve(preset?.cwd || "", terminal.cwd || "")
+            ) ?
+              path.resolve(preset?.cwd || "", terminal.cwd || "") :
+              Uri.joinPath(
+                workspaceUri,
+                path.resolve(preset?.cwd || "", terminal.cwd || "")
+              )
+          );
+
           openTerminal({
             ...terminal,
             cwd
@@ -205,11 +220,11 @@ export function activate(context: ExtensionContext) {
     } else {
       if (openOnStartup.startsWith("preset:")) {
         commands.executeCommand("quickTerminals.open-preset", {
-          name: openOnStartup.slice(7)
+          id: openOnStartup.slice(7)
         });
       } else {
         commands.executeCommand("quickTerminals.open-terminal", {
-          name: openOnStartup.slice(7)
+          id: openOnStartup
         });
       }
     }
@@ -235,6 +250,11 @@ function openTerminal(
     message: terminal.message,
     iconPath: terminal.icon ? new ThemeIcon(terminal.icon) : undefined
   });
+
+  if (terminal.split && Array.isArray(terminal.split)) {
+    terminal.split.forEach((splitTerminal) => {
+    });
+  }
 
   if (terminal.command) {
     term.sendText(terminal.command, true);

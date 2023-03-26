@@ -17,7 +17,8 @@ export const COLOR_MAP = {
 export type QuickTerminalColor = keyof typeof COLOR_MAP;
 
 export interface QuickTerminal {
-  name: string;
+  id: string;
+  name?: string;
   color?: QuickTerminalColor;
   cwd?: string;
   show?: boolean;
@@ -27,6 +28,7 @@ export interface QuickTerminal {
   env?: TerminalOptions["env"];
   message?: string;
   icon?: string;
+  split?: Omit<QuickTerminal, "split">[];
 }
 
 export interface Config {
