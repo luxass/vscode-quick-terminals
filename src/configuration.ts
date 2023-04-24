@@ -1,53 +1,14 @@
 /* eslint-disable @typescript-eslint/indent */
 
 import { ConfigurationTarget, workspace } from "vscode";
-import type { ConfigurationScope, TerminalOptions } from "vscode";
+import type { ConfigurationScope } from "vscode";
 
-export const COLOR_MAP = {
-  black: "terminal.ansiBlack",
-  blue: "terminal.ansiBlue",
-  cyan: "terminal.ansiCyan",
-  green: "terminal.ansiGreen",
-  magenta: "terminal.ansiMagenta",
-  red: "terminal.ansiRed",
-  white: "terminal.ansiWhite",
-  yellow: "terminal.ansiYellow"
-};
-
-export type QuickTerminalColor = keyof typeof COLOR_MAP;
-
-export interface QuickTerminal {
-  id: string;
-  name?: string;
-  color?: QuickTerminalColor;
-  cwd?: string;
-  show?: boolean;
-  command?: string;
-  shellPath?: TerminalOptions["shellPath"];
-  shellArgs?: TerminalOptions["shellArgs"];
-  env?: TerminalOptions["env"];
-  message?: string;
-  icon?: string;
-  split?: Omit<QuickTerminal, "split">[];
-}
+import type { Preset, QuickTerminal } from "./utils";
 
 export interface Config {
   terminals: QuickTerminal[];
-  openOnStartup: boolean | string;
+  openOnStartup?: string;
   presets: Preset[];
-}
-
-export interface Preset {
-  name: string;
-  cwd?: string;
-  shellPath?: TerminalOptions["shellPath"];
-  shellArgs?: TerminalOptions["shellArgs"];
-  env?: TerminalOptions["env"];
-  terminals: QuickPresetTerminal[];
-}
-
-export interface QuickPresetTerminal extends QuickTerminal {
-  preventCwdPrepend?: boolean;
 }
 
 export const config = {
