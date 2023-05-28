@@ -11,6 +11,20 @@ const NO_NAME = "No Name";
 
 export function activate(ctx: ExtensionContext) {
   ctx.subscriptions.push(
+    commands.registerCommand("quickTerminals.run-terminal", async () => {
+      window.showInformationMessage("Run terminal");
+    }),
+    commands.registerCommand("quickTerminals.run-terminals", async () => {
+      window.showInformationMessage("Run terminals");
+    }),
+    commands.registerCommand("quickTerminals.run-category", async () => {
+      window.showInformationMessage("Run category");
+    }),
+    commands.registerCommand("quickTerminals.kill", async () => {
+      window.showInformationMessage("Kill terminal(s)");
+    })
+  )
+  ctx.subscriptions.push(
     commands.registerCommand(
       "quickTerminals.open-terminal",
       async (args?: { id?: string }) => {
@@ -134,4 +148,4 @@ export function activate(ctx: ExtensionContext) {
   }
 }
 
-export function deactivate() {}
+export function deactivate() { }

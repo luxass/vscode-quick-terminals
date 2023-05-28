@@ -31,13 +31,23 @@
   "contributes": {
     "commands": [
       {
-        "command": "quickTerminals.open-terminal",
-        "title": "Open Terminal",
+        "command": "quickTerminals.run-terminal",
+        "title": "Run Terminal",
         "category": "Quick Terminals"
       },
       {
-        "command": "quickTerminals.open-preset",
-        "title": "Open Preset",
+        "command": "quickTerminals.run-terminals",
+        "title": "Run Terminal",
+        "category": "Quick Terminals"
+      },
+      {
+        "command": "quickTerminals.run-category",
+        "title": "Run Category",
+        "category": "Quick Terminals"
+      },
+      {
+        "command": "quickTerminals.kill",
+        "title": "Kill Terminal(s)",
         "category": "Quick Terminals"
       }
     ],
@@ -413,9 +423,10 @@
     "release": "pnpm vsce publish --no-dependencies",
     "lint": "eslint --cache .",
     "lint:fix": "pnpm lint --fix",
-    "format": "prettier --write . --cache",
     "typecheck": "tsc --noEmit",
-    "preinstall": "npx only-allow pnpm"
+    "update:configuration": "node ./scripts/update-configuration.mjs",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "pnpm update:configuration"
   },
   "devDependencies": {
     "@luxass/eslint-config": "^3.2.0",
