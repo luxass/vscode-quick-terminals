@@ -2,28 +2,14 @@
 
 ## Features
 
-- Open multiple pre-configured terminals with a command
-- Can open terminals on startup based on `quickTerminals.openOnStartup` setting
+- Run one or multiple pre-configured terminals
+- Run a whole folder of terminals
+- Run terminals on startup
+- API for other extensions to run terminals
 
-## Configure a terminal
+## API
 
-```jsonc
-// .vscode/settings.json
 
-{
-  "quickTerminals.terminals": [
-    {
-      "name": "Terminal 1",
-      "command": "echo 'Hello World!'" // will run this command in the terminal
-    },
-    {
-      "name": "Terminal 2",
-      "command": "npm run dev", // will run this in the background
-      "show": false
-    }
-  ]
-}
-```
 
 ## 💻 Development
 

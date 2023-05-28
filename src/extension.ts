@@ -17,8 +17,8 @@ export function activate(ctx: ExtensionContext) {
     commands.registerCommand("quickTerminals.run-terminals", async () => {
       window.showInformationMessage("Run terminals");
     }),
-    commands.registerCommand("quickTerminals.run-category", async () => {
-      window.showInformationMessage("Run category");
+    commands.registerCommand("quickTerminals.run-folder", async () => {
+      window.showInformationMessage("Run folder");
     }),
     commands.registerCommand("quickTerminals.kill", async () => {
       window.showInformationMessage("Kill terminal(s)");
@@ -145,6 +145,10 @@ export function activate(ctx: ExtensionContext) {
         id: openOnStartup
       });
     }
+  }
+
+  return {
+
   }
 }
 

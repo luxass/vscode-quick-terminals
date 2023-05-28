@@ -1,8 +1,9 @@
 {
-  "name": "vscode-quick-terminals",
   "publisher": "luxass",
+  "name": "vscode-quick-terminals",
   "displayName": "Quick Terminals",
   "version": "0.0.1",
+  "packageManager": "pnpm@7.18.0",
   "description": "Open multiple terminals at the same time.",
   "author": {
     "name": "Lucas Nørgård",
@@ -24,7 +25,6 @@
   "engines": {
     "vscode": "^1.68.0"
   },
-  "packageManager": "pnpm@7.18.0",
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -41,8 +41,8 @@
         "category": "Quick Terminals"
       },
       {
-        "command": "quickTerminals.run-category",
-        "title": "Run Category",
+        "command": "quickTerminals.run-folder",
+        "title": "Run Folder",
         "category": "Quick Terminals"
       },
       {
