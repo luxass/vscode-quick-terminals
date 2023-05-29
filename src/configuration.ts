@@ -1,23 +1,22 @@
-/* eslint-disable @typescript-eslint/indent */
 
 import { ConfigurationTarget, workspace } from "vscode";
 import type { ConfigurationScope } from "vscode";
 
 import type { Preset, QuickTerminal } from "./utils";
 
-export interface Config {
-  terminals: QuickTerminal[];
-  openOnStartup?: string;
-  presets: Preset[];
-}
+export type Config = {
+  terminals: QuickTerminal[]
+  openOnStartup?: string
+  presets: Preset[]
+};
 
 export const config = {
   get<T extends Path<Config>>(
     key: T,
     options?: {
-      scope?: ConfigurationScope;
-      defaultValue?: PathValue<Config, T>;
-      section: string;
+      scope?: ConfigurationScope
+      defaultValue?: PathValue<Config, T>
+      section: string
     }
   ): PathValue<Config, T> {
     const section = options?.section ?? "quickTerminals";
@@ -26,11 +25,11 @@ export const config = {
 
     const value = !defaultValue ?
       workspace
-          .getConfiguration(section, scope)
-          .get<PathValue<Config, T>>(key)! :
+        .getConfiguration(section, scope)
+        .get<PathValue<Config, T>>(key)! :
       workspace
-          .getConfiguration(section, scope)
-          .get<PathValue<Config, T>>(key, defaultValue)!;
+        .getConfiguration(section, scope)
+        .get<PathValue<Config, T>>(key, defaultValue)!;
 
     return value;
   },
@@ -38,9 +37,9 @@ export const config = {
   set<T extends Path<Config>>(
     key: T,
     options?: {
-      section?: string;
-      value: PathValue<Config, T>;
-      target?: ConfigurationTarget;
+      section?: string
+      value: PathValue<Config, T>
+      target?: ConfigurationTarget
     }
   ): Thenable<void> {
     const section = options?.section ?? "quickTerminals";
@@ -56,9 +55,9 @@ export const config = {
 type ChildPath<T, Key extends keyof T> = Key extends string
   ? T[Key] extends Record<string, any>
     ?
-        | `${Key}.${ChildPath<T[Key], Exclude<keyof T[Key], keyof any[]>> &
-            string}`
-        | `${Key}.${Exclude<keyof T[Key], keyof any[]> & string}`
+      | `${Key}.${ChildPath<T[Key], Exclude<keyof T[Key], keyof any[]>> &
+      string}`
+      | `${Key}.${Exclude<keyof T[Key], keyof any[]> & string}`
     : never
   : never;
 
@@ -71,5 +70,5 @@ type PathValue<T, P extends Path<T>> = P extends `${infer Key}.${infer Rest}`
       : never
     : never
   : P extends keyof T
-  ? T[P]
-  : never;
+    ? T[P]
+    : never;

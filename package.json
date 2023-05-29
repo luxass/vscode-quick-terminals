@@ -26,9 +26,22 @@
     "vscode": "^1.68.0"
   },
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onCommand:quickTerminals.run-terminal",
+    "onCommand:quickTerminals.run-terminals",
+    "onCommand:quickTerminals.run-folder",
+    "onCommand:quickTerminals.kill",
+    "onView:quickTerminals"
   ],
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "quickTerminals",
+          "name": "Quick Terminals"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "quickTerminals.run-terminal",
