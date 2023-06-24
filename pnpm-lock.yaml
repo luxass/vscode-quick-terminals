@@ -4,7 +4,7 @@ specifiers:
   '@luxass/eslint-config': ^3.1.0
   '@luxass/prettier-config': ^1.2.0
   '@types/node': ^18.15.7
-  '@types/vscode': 1.68.0
+  '@types/vscode': 1.79.1
   '@vscode/vsce': ^2.18.0
   eslint: ^8.36.0
   prettier: ^2.8.7
@@ -15,7 +15,7 @@ devDependencies:
   '@luxass/eslint-config': 3.1.0_j4766f7ecgqbon3u7zlxn5zszu
   '@luxass/prettier-config': 1.2.0_prettier@2.8.7
   '@types/node': 18.15.7
-  '@types/vscode': 1.68.0
+  '@types/vscode': 1.79.1
   '@vscode/vsce': 2.18.0
   eslint: 8.36.0
   prettier: 2.8.7
@@ -695,8 +695,8 @@ packages:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: true
 
-  /@types/vscode/1.68.0:
-    resolution: {integrity: sha512-duBwEK5ta/eBBMJMQ7ECMEsMvlE3XJdRGh3xoS1uOO4jl2Z4LPBl5vx8WvBP10ERAgDRmIt/FaSD4RHyBGbChw==}
+  /@types/vscode/1.79.1:
+    resolution: {integrity: sha512-Ikwc4YbHABzqthrWfeAvItaAIfX9mdjMWxqNgTpGjhgOu0TMRq9LzyZ2yBK0JhYqoSjEubEPawf6zJgnl6Egtw==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.56.0_2hcjazgfnbtq42tcc73br2vup4:
