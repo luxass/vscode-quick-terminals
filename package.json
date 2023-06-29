@@ -24,7 +24,7 @@
   "engines": {
     "vscode": "^1.68.0"
   },
-  "packageManager": "pnpm@8.6.3",
+  "packageManager": "pnpm@8.6.4",
   "activationEvents": [
     "onStartupFinished"
   ],
