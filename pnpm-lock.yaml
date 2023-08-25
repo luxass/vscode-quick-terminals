@@ -10,7 +10,7 @@ devDependencies:
     version: 3.1.0(@typescript-eslint/parser@5.56.0)(eslint@8.36.0)(typescript@5.0.2)
   '@luxass/prettier-config':
     specifier: ^1.2.0
-    version: 1.2.0(prettier@2.8.7)
+    version: 1.2.0(prettier@3.0.0)
   '@types/node':
     specifier: ^18.15.7
     version: 18.15.7
@@ -24,8 +24,8 @@ devDependencies:
     specifier: ^8.36.0
     version: 8.36.0
   prettier:
-    specifier: ^2.8.7
-    version: 2.8.7
+    specifier: ^3.0.0
+    version: 3.0.0
   tsup:
     specifier: ^7.0.0
     version: 7.0.0(typescript@5.0.2)
@@ -493,7 +493,7 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@ianvs/prettier-plugin-sort-imports@3.7.2(prettier@2.8.7):
+  /@ianvs/prettier-plugin-sort-imports@3.7.2(prettier@3.0.0):
     resolution: {integrity: sha512-bVckKToJM8XV2wTOG1VpeXrSmfAG49esVrikbxeFbY51RJdNke9AdMANJtGuACB59uo+pGlz0wBdWFrRzWyO1A==}
     peerDependencies:
       '@vue/compiler-sfc': '>=3.0.0'
@@ -510,7 +510,7 @@ packages:
       javascript-natural-sort: 0.7.1
       lodash.clone: 4.5.0
       lodash.isequal: 4.5.0
-      prettier: 2.8.7
+      prettier: 3.0.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -616,13 +616,13 @@ packages:
       - supports-color
     dev: true
 
-  /@luxass/prettier-config@1.2.0(prettier@2.8.7):
+  /@luxass/prettier-config@1.2.0(prettier@3.0.0):
     resolution: {integrity: sha512-FjeMtv/mNGl5kkmjjrjEgQaKfJiaAzggEqhLfg3K//2SbKHCLadMEhidjmBQNh/U2pSNd7G6yZgirrg9IhqBtQ==}
     peerDependencies:
       prettier: ^2.8.7
     dependencies:
-      '@ianvs/prettier-plugin-sort-imports': 3.7.2(prettier@2.8.7)
-      prettier: 2.8.7
+      '@ianvs/prettier-plugin-sort-imports': 3.7.2(prettier@3.0.0)
+      prettier: 3.0.0
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - supports-color
@@ -2930,9 +2930,9 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier@2.8.7:
-    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
-    engines: {node: '>=10.13.0'}
+  /prettier@3.0.0:
+    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
